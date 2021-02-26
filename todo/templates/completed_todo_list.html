@@ -1,19 +1,15 @@
-{% load static%}
+{% extends 'base.html' %}
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type = "text/css" href="{% static 'css/todo_list.css' %}"/>
-    <title>ToDo list</title>
-</head>
 <body>
-<div><p>BDFjango TODO</p></div>
+<div class="topbar"><p>BDFjango TODO</p></div>
+<div class="table_box">
+<button class="btn1">Add task</button>
 <table>
-    <th>Completed tasks in "List 1"</th>
+    <th class="table-name">Completed tasks in "List 1"</th>
 </table>
 
-<table>
+<table class="todo_table">
 <tr>
     <th>Task</th>
     <th>Created</th>
@@ -24,11 +20,11 @@
 
     {% for this_task in tasks_list %}
         {% if this_task.mark == False%}
-            <td>{{ this_task.task }}</td>
-            <td>{{ this_task.created }}</td>
-            <td>{{ this_task.due_on }}</td>
-            <td>{{ this_task.owner }}</td>
-            <td><div>Not Done</div></td>
+      <td scope="col" class="row task_row">{{ this_task.task }}</td>
+            <td scope="col" class="row create_row">{{ this_task.created }}</td>
+            <td scope="col" class="row due_row">{{ this_task.due_on }}</td>
+            <td scope="col" class="row own_row">{{ this_task.owner }}</td>
+            <td scope="col" class="row done_row"><div class="status">Not Done</div></td>
             </tr>
         {% endif %}
 
@@ -36,6 +32,10 @@
 
 
 </table>
+<a class="link1" href="http://localhost:8000/todos/">
+    <button class="btn2" >View incompleted task</button></a>
+<button class="btn3">Delete this list</button>
 
-</body>
-</html>
+</div>
+
+{% endblock %}
