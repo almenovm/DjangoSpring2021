@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="topbar"><p>BDFjango TODO</p></div>
+<div class="table_box">
+<button class="btn1">Add task</button>
+<table>
+    <th class="table-name">Tasks in "{{ todo.name }}"</th>
+</table>
+
+<table class="todo_table">
+<tr>
+    <th>Task</th>
+    <th>Created</th>
+    <th>Due on</th>
+    <th>Owner</th>
+    <th>Mark</th>
+</tr>
+
+    {% for this_task in tasks %}
+        <tr>
+            <td scope="col" class="row task_row">{{ this_task.task }}</td>
+            <td scope="col" class="row create_row">{{ this_task.created }}</td>
+            <td scope="col" class="row due_row">{{ this_task.due_on }}</td>
+            <td scope="col" class="row own_row">{{ this_task.owner }}</td>
+            <td scope="col" class="row done_row"><button class="status">Done</button></td>
+        </tr>
+
+    {% endfor %}
+
+
+</table>
+<a class="link1" href="http://localhost:8000/todos/1/completed/">
+    <button class="btn2" >View completed task</button></a>
+<button class="btn3">Delete this list</button>
+
+</div>
+
+{% endblock %}
